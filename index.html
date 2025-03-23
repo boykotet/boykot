@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boykot Sayfası</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        #searchBar {
+            width: 50%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #222;
+            color: white;
+            border: 1px solid white;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+        .header-image {
+            max-width: 200px;
+            height: auto;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid white;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+        th {
+            background-color: #333;
+        }
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <input type="text" id="searchBar" placeholder="Firma ara..." onkeyup="filterTable()">
+        <img src="https://www.indyturk.com/sites/default/files/article/main_image/2022/12/24/1077156-642634985.jpg" alt="BOYKOT Başlığı" class="header-image">
+    </div>
+    <section>
+        <table id="boykotTable">
+            <thead>
+                <tr>
+                    <th>Firma</th>
+                    <th>Logo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>KamilKoç</td>
+                    <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/K%C3%A2mil_Ko%C3%A7_Logo_Mavi.png/1200px-K%C3%A2mil_Ko%C3%A7_Logo_Mavi.png" alt="KamilKoç Logo"></td>
+                </tr>
+                <tr>
+                    <td>Firma 2</td>
+                    <td><img src="firma2-logo.jpg" alt="Firma 2 Logo"></td>
+                </tr>
+                <tr>
+                    <td>Firma 3</td>
+                    <td><img src="firma3-logo.jpg" alt="Firma 3 Logo"></td>
+                </tr>
+                <tr>
+                    <td>Firma 4</td>
+                    <td><img src="firma4-logo.jpg" alt="Firma 4 Logo"></td>
+                </tr>
+                <tr>
+                    <td>Firma 5</td>
+                    <td><img src="firma5-logo.jpg" alt="Firma 5 Logo"></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        function filterTable() {
+            let input = document.getElementById("searchBar").value.toLowerCase();
+            let table = document.getElementById("boykotTable");
+            let rows = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < rows.length; i++) {
+                let firmName = rows[i].getElementsByTagName("td")[0];
+                if (firmName) {
+                    let textValue = firmName.textContent || firmName.innerText;
+                    if (textValue.toLowerCase().indexOf(input) > -1) {
+                        rows[i].style.display = "";
+                    } else {
+                        rows[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
